@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Trajanje {
+public abstract class Trajanje {
     private LocalDateTime pocetak;
     private LocalDateTime kraj;
 
