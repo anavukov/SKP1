@@ -5,10 +5,13 @@ import model.Termin;
 import request.KriterijumRequest;
 import request.SlobodanTerminRequest;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public interface PregledRasporeda {
+    // svugde gde imate date i minutes prebacite u slobodanterminrequest
     /*
     Izlistavanje slobodnih termina može da uključi i
 tačnu prostoriju, prostoriju sa određenim osobinama (na primer učionica sa računarima, projektorom,
@@ -18,9 +21,9 @@ slobodna tog i tog dana). Obezbediti i pretraživanje rasporeda prema vezanim po
 je nastavnik vezani podatak, izlistati sve termine tog nastavnika ili sve termine kada je on slobodan).
      */
 
-    List<Termin> slobodniTerminiUProstoru(LocalDate date, Prostor prostor);
+    List<Termin> slobodniTerminiUProstoru(SlobodanTerminRequest request,Prostor prostor);
     List<Termin> slobodanZaVreme(SlobodanTerminRequest request);
-    List<Termin> filterSlobodne(SlobodanTerminRequest request,Prostor prostor);
+    List<Termin> filterSlobodne(SlobodanTerminRequest request,Prostor prostor, KriterijumRequest kriterijumRequest);
     List<Termin> filterSlobodneSaRacunarima(SlobodanTerminRequest request);
     List<Termin> filterSlobodne(SlobodanTerminRequest request,
                                 int kapacitet,
@@ -29,8 +32,8 @@ je nastavnik vezani podatak, izlistati sve termine tog nastavnika ili sve termin
                                 boolean grafickaTabla
     );
     List<Termin> filterSlobodne(SlobodanTerminRequest request, KriterijumRequest kriterijumRequest);
-    List<Termin> slobodanNastavnik(LocalDate date, int minutes, String nastavnik);
-    List<Termin> terminiNastavnika(LocalDate date, int minutes, String nastavnik);
+    List<Termin> slobodanNastavnik(SlobodanTerminRequest request, String nastavnik);
+    List<Termin> terminiNastavnika(SlobodanTerminRequest request, String nastavnik);
 
 
 }
